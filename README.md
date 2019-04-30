@@ -159,8 +159,8 @@ Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://tw
 
 Second part of Airbnb: Joann Vuong
 
-Third part to Airbnb:
+## Third part to Airbnb:
 Angie Delgado - [Github] (https://github.com/seleniadelgado) / [Twitter](https://twitter.com/surf08)
-Allison Weiner - [Github] (https://github.com/jozsa) / [Twitter](https:// twitter.com/weinermeister)
+Allison Weiner - [Github] (https://github.com/jozsa) / [Twitter](https://twitter.com/weinermeister)
 ## License
 Public Domain. No copy write protection. 
