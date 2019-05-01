@@ -8,12 +8,12 @@ import json
 from models import storage
 
 
-stat_dict = {"amenities": storage.count("amenities"),
-             "cities": storage.count("cities"),
-             "places": storage.count("places"),
-             "reviews": storage.count("reviews"),
-             "states": storage.count("states"),
-             "users": storage.count("users")}
+stat_dict = {"amenities": storage.count("Amenity"),
+             "cities": storage.count("City"),
+             "places": storage.count("Place"),
+             "reviews": storage.count("Review"),
+             "states": storage.count("State"),
+             "users": storage.count("User")}
 
 
 @app_views.route('/status', strict_slashes=False)
