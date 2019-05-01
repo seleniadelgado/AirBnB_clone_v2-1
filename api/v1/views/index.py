@@ -9,4 +9,4 @@ import json
 
 @app_views.route('/status', strict_slashes=False)
 def status_route():
-    return jsonify("status": "OK"})
+    return jsonify({"status": "OK"})
