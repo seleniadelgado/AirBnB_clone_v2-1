@@ -156,10 +156,12 @@ No known bugs at this time.
 ## Authors
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
-Angie Delgado - [Github] (https://github.com/seleniadelgado) / [Twitter](https://twitter.com/surf08)
-Allison Weiner - [Github] (https://github.com/jozsa) / [Twitter](https:// twitter.com/weinermeister)
-
 
 Second part of Airbnb: Joann Vuong
+
+Third part to Airbnb:
+Angie Delgado - [Github](https://github.com/seleniadelgado) / [Twitter](https://twitter.com/surf08)
+
+Allison Weiner - [Github](https://github.com/jozsa) / [Twitter](https://twitter.com/weinermeister)
 ## License
 Public Domain. No copy write protection. 
