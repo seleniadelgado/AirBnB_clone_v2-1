@@ -15,7 +15,7 @@ def state_route():
                       in storage.all("State").values()]
         return jsonify(state_list)
     if request.method == 'POST':
-        req_dict = request.get_json()
+        req_dict = request.get_json(silent=True)
         if req_dict is None:
             return 'Not a JSON', 400
         if 'name' not in req_dict.keys():
@@ -43,7 +43,7 @@ def state_id_route(state_id):
     if request.method == 'PUT':
         if state is None:
             abort(404)
-        req_dict = request.get_json()
+        req_dict = request.get_json(silent=True)
         if req_dict is None:
             return 'Not a JSON', 400
         for key, value in req_dict.items():
