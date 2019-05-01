@@ -13,6 +13,7 @@ from api.v1.views import app_views
 app = Flask(__name__)
 app.register_blueprint(app_views)
 
+
 @app.teardown_appcontext
 def _close(self):
     """closes app"""
@@ -28,4 +29,3 @@ if __name__ == "__main__":
     else:
         portnbr = 5000
     app.run(hostip, port=portnbr, threaded=True)
-    
