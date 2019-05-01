@@ -19,12 +19,13 @@ def _close(self):
     """closes app"""
     storage.close()
 
+
 @app.errorhandler(404)
-def  page_not_found(e):
+def page_not_found(e):
     response = jsonify({"error": "Not found"})
     response.status_code = 404
     return response
-    
+
 if __name__ == "__main__":
     if "HBNB_API_HOST" in os.environ:
         hostip = os.environ["HBNB_API_HOST"]
