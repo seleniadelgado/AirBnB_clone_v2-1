@@ -111,6 +111,7 @@ class TestAmenity(unittest.TestCase):
         amenity = Amenity(name="Hot Tub")
         amenity.save()
         self.assertEqual(models.storage.count(), count + 1)
+
     def test_get(self):
         """test get method to retrieve on object"""
         amenity = Amenity(name="AC")
