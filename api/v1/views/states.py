@@ -18,13 +18,12 @@ def state_route():
         req_dict = request.get_json()
         if req_dict is None:
             return 'Not a JSON', 400
+        if 'name' not in req_dict.keys():
+            return 'Missing name', 400
         new = State(**req_dict)
         storage.new(new)
         storage.save()
-        if 'name' not in req_dict.keys():
-            return 'Missing name', 400
-        else:
-            return jsonify(new.to_dict()), 201
+        return jsonify(new.to_dict()), 201
 
 
 @app_views.route('/states/<state_id>', strict_slashes=False,
