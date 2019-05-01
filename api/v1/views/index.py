@@ -15,7 +15,8 @@ stat_dict = {"amenities": storage.count("amenities"),
              "states": storage.count("states"),
              "users": storage.count("users")}
 
-@app_views.route('/status', strict_slashes=False) 
+
+@app_views.route('/status', strict_slashes=False)
 def status_route():
     return jsonify({"status": "OK"})
 
