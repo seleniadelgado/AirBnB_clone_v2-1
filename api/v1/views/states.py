@@ -19,7 +19,8 @@ def state_route():
         if req_dict is None:
             return 'Not a JSON', 400
         new = State(**req_dict)
-        new.save()
+        storage.new(new)
+        storage.save()
         if 'name' not in req_dict.keys():
             return 'Missing name', 400
         else:
@@ -38,6 +39,7 @@ def state_id_route(state_id):
         if state is None:
             abort(404)
         storage.delete(state)
+        storage.save()
         return jsonify({}), 200
     if request.method == 'PUT':
         if state is None:
@@ -46,7 +48,7 @@ def state_id_route(state_id):
         if req_dict is None:
             return 'Not a JSON', 400
         for key, value in req_dict.items():
-            if key == 'id' or key == 'created_at' or key == 'updated_at':
-                pass
-            state.__dict__[key] = value
+            if key != 'id' or key != 'created_at' or key != 'updated_at':
+                state.__dict__[key] = value
+        storage.save()
         return jsonify(state.to_dict()), 200
