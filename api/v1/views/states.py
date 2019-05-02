@@ -48,6 +48,6 @@ def state_id_route(state_id):
             abort(400, 'Not a JSON')
         for key, value in req_dict.items():
             if key != 'id' or key != 'created_at' or key != 'updated_at':
-                state.__dict__[key] = value
+                setattr(state, key, value)
         storage.save()
         return jsonify(state.to_dict()), 200
