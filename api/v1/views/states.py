@@ -5,7 +5,7 @@ Handles RESTful API actions for State objects
 from models import storage
 from models.state import State
 from api.v1.views import app_views
-from flask import request, jsonify, abort
+from flask import request, jsonify, abort, app
 
 
 @app_views.route('/states', strict_slashes=False, methods=['GET', 'POST'])
@@ -15,11 +15,11 @@ def state_route():
                       in storage.all("State").values()]
         return jsonify(state_list)
     if request.method == 'POST':
-        req_dict = request.get_json(silent=True)
+        req_dict = request.get_json()
         if req_dict is None:
-            return 'Not a JSON', 400
+            abort(400, 'Not a JSON')
         if 'name' not in req_dict.keys():
-            return 'Missing name', 400
+            abort(400, 'Missing name')
         new = State(**req_dict)
         storage.new(new)
         storage.save()
@@ -43,9 +43,9 @@ def state_id_route(state_id):
     if request.method == 'PUT':
         if state is None:
             abort(404)
-        req_dict = request.get_json(silent=True)
+        req_dict = request.get_json()
         if req_dict is None:
-            return 'Not a JSON', 400
+            abort(400, 'Not a JSON')
         for key, value in req_dict.items():
             if key != 'id' or key != 'created_at' or key != 'updated_at':
                 state.__dict__[key] = value
