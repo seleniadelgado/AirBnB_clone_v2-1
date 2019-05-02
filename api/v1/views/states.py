@@ -13,16 +13,15 @@ def state_route():
     if request.method == 'GET':
         state_list = [state.to_dict() for state
                       in storage.all("State").values()]
-        return jsonify(state_list)
+        return jsonify(state_list), 200
     if request.method == 'POST':
-        req_dict = request.get_json()
+        req_dict = request.get_json(silent=True)
         if req_dict is None:
-            abort(400, 'Not a JSON')
+            return 'Not a JSON', 400
         if 'name' not in req_dict.keys():
-            abort(400, 'Missing name')
+            return 'Missing name', 400
         new = State(**req_dict)
-        storage.new(new)
-        storage.save()
+        new.save()
         return jsonify(new.to_dict()), 201
 
 
@@ -30,24 +29,20 @@ def state_route():
                  methods=['GET', 'DELETE', 'PUT'])
 def state_id_route(state_id):
     state = storage.get("State", state_id)
+    if state is None:
+        abort(404)
     if request.method == 'GET':
-        if state is None:
-            abort(404)
-        return jsonify(state.to_dict())
+        return jsonify(state.to_dict()), 200
     if request.method == 'DELETE':
-        if state is None:
-            abort(404)
-        storage.delete(state)
+        state.delete()
         storage.save()
         return jsonify({}), 200
     if request.method == 'PUT':
-        if state is None:
-            abort(404)
-        req_dict = request.get_json()
+        req_dict = request.get_json(silent=True)
         if req_dict is None:
             abort(400, 'Not a JSON')
         for key, value in req_dict.items():
             if key != 'id' or key != 'created_at' or key != 'updated_at':
                 setattr(state, key, value)
-        storage.save()
+        state.save()
         return jsonify(state.to_dict()), 200
