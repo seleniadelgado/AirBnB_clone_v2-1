@@ -46,8 +46,8 @@ def state_id_route(state_id):
         req_dict = request.get_json(silent=True)
         if req_dict is None:
             return 'Not a JSON', 400
-        for key, value in req_dict.items():
-            if key != 'id' or key != 'created_at' or key != 'updated_at':
+        if key != 'id' or key != 'created_at' or key != 'updated_at':
+            for key, value in req_dict.items():
                 state.__dict__[key] = value
         storage.save()
         return jsonify(state.to_dict()), 200
