@@ -33,9 +33,9 @@ def review_id_route(review_id):
         return jsonify(review.to_dict())
 
 
-@app_views.route('/cities/<city_id>/reviews', strict_slashes=False,
+@app_views.route('/places/<place_id>/reviews', strict_slashes=False,
                  methods=['GET', 'POST'])
-def review_city_id(city_id):
+def review_place_id(place_id):
     place = storage.get("Place", city_id)
     if place is None:
         abort(404)
