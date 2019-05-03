@@ -21,7 +21,7 @@ def state_route():
         if 'name' not in req_dict.keys():
             return jsonify({"error": "Missing name"}), 400
         new = State(**req_dict)
-        new.save()
+        storage.new(new)
         return jsonify(new.to_dict()), 201
 
 
