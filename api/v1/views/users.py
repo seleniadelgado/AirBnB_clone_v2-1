@@ -22,7 +22,7 @@ def user_route():
         if 'email' not in req_dict.keys():
             return jsonify({"error": "Missing email"}), 400
         if 'password' not in req_dict.keys():
-            return jsonify({"error": "Missing password"})
+            return jsonify({"error": "Missing password"}), 400
         new = User(**req_dict)
         new.save()
         return jsonify(new.to_dict()), 201
