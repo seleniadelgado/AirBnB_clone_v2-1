@@ -104,16 +104,3 @@ class TestAmenity(unittest.TestCase):
         amenity = Amenity()
         string = "[Amenity] ({}) {}".format(amenity.id, amenity.__dict__)
         self.assertEqual(string, str(amenity))
-
-    def test_count(self):
-        """test that count returns the right number of instances"""
-        count = models.storage.count()
-        amenity = Amenity(name="Hot Tub")
-        amenity.save()
-        self.assertEqual(models.storage.count(), count + 1)
-
-    def test_get(self):
-        """test get method to retrieve on object"""
-        amenity = Amenity(name="AC")
-        amenity.save()
-        self.assertEqual(amenity, models.storage.get("Amenity", amenity.id))
