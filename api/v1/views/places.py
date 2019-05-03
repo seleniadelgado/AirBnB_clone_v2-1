@@ -11,7 +11,7 @@ from flask import request, jsonify, abort
 @app_views.route('/places/<place_id>', strict_slashes=False,
                  methods=['GET', 'DELETE', 'PUT'])
 def place_id_route(place_id):
-    place = storage.get("place", place_id)
+    place = storage.get("Place", place_id)
     if place is None:
         abort(404)
     if request.method == 'GET':
