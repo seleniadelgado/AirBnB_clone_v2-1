@@ -14,7 +14,6 @@ def amenity_route():
         amenity_list = [amenity.to_dict() for amenity
                         in storage.all("Amenity").values()]
         return jsonify(amenity_list)
-
     if request.method == 'POST':
         req_dict = request.get_json(silent=True)
         if req_dict is None:
@@ -34,12 +33,10 @@ def amenity_id_route(amenity_id):
         abort(404)
     if request.method == 'GET':
         return jsonify(amenity.to_dict())
-
     if request.method == 'DELETE':
         amenity.delete()
         storage.save()
         return jsonify({}), 200
-
     if request.method == 'PUT':
         req_dict = request.get_json(silent=True)
         if req_dict is None:
