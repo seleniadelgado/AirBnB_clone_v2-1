@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Handles RESTful API actions for State objects
+Handles RESTful API actions for amenities objects
 """
 from models import storage
 from models.amenity import Amenity
@@ -12,7 +12,7 @@ from flask import request, jsonify, abort
 def amenity_route():
     if request.method == 'GET':
         amenity_list = [amenity.to_dict() for amenity
-                      in storage.all("Amenity").values()]
+                        in storage.all("Amenity").values()]
         return jsonify(amenity_list)
 
     if request.method == 'POST':
