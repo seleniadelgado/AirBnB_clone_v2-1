@@ -36,7 +36,7 @@ def review_id_route(review_id):
 @app_views.route('/places/<place_id>/reviews', strict_slashes=False,
                  methods=['GET', 'POST'])
 def review_place_id(place_id):
-    place = storage.get("Place", city_id)
+    place = storage.get("Place", place_id)
     if place is None:
         abort(404)
     if request.method == 'GET':
