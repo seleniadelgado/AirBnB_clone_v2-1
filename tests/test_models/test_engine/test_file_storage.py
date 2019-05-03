@@ -118,6 +118,8 @@ class TestCountGet(unittest.TestCase):
                         user_id=user.id,
                         place_id=place.id,
                         text="AWESOME!")
+        review.save()
+        self.assertEqual(review, models.storage.get("Review", review.id))
 
 
 class TestFileStorage(unittest.TestCase):
