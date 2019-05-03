@@ -35,7 +35,7 @@ def place_id_route(place_id):
 
 @app_views.route('/cities/<city_id>/places', strict_slashes=False,
                  methods=['GET', 'POST'])
-def place_state_id_route(state_id):
+def place_city_id(city_id):
     city = storage.get("City", city_id)
     if city is None:
         abort(404)
