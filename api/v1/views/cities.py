@@ -48,6 +48,6 @@ def city_state_id_route(state_id):
             return jsonify({"error": "Not a JSON"}), 400
         if 'name' not in req_dict.keys():
             return jsonify({"error": "Missing name"}), 400
-        new = city(**req_dict)
+        new = City(**req_dict)
         new.save()
         return jsonify(new.to_dict()), 201
