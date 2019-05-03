@@ -28,8 +28,8 @@ def city_id_route(city_id):
             if key != 'id' and key != 'created_at' and \
                     key != 'updated_at' and key != 'state_id':
                 setattr(city, key, value)
-            city.save()
-            return jsonify(city.to_dict())
+        city.save()
+        return jsonify(city.to_dict())
 
 
 @app_views.route('/states/<state_id>/cities', strict_slashes=False,
