@@ -3,7 +3,7 @@
 Handles RESTful API actions for State objects
 """
 from models import storage
-from models.state import Amenity
+from models.amenity import Amenity
 from api.v1.views import app_views
 from flask import request, jsonify, abort
 
@@ -29,7 +29,7 @@ def amenity_route():
 @app_views.route('/amenities/<amenity_id>', strict_slashes=False,
                  methods=['GET', 'DELETE', 'PUT'])
 def amenity_id_route(amenity_id):
-    amenity = storage.get("Amenity", state_id)
+    amenity = storage.get("Amenity", amenity_id)
     if not amenity:
         abort(404)
     if request.method == 'GET':
