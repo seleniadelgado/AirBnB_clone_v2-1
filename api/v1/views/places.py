@@ -40,8 +40,9 @@ def place_state_id_route(state_id):
     if city is None:
         abort(404)
     if request.method == 'GET':
-        place_list = [place.to_dict() for place in storage.all("Place").values()
-                     if place.city_id == city_id]
+        place_list = [place.to_dict() for place in
+                      storage.all("Place").values()
+                      if place.city_id == city_id]
         return jsonify(place_list)
     if request.method == 'POST':
         req_dict = request.get_json(silent=True)
