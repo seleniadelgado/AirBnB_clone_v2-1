@@ -68,6 +68,58 @@ test_file_storage.py'])
                             "{:s} method needs a docstring".format(func[0]))
 
 
+class TestCountGet(unittest.TestCase):
+    """Test count and get methods of db_storage"""
+    def test_count(self):
+        """Test count method for all classes"""
+        count = models.storage.count()
+        amenity = Amenity(name="Hot Tub")
+        amenity.save()
+        self.assertEqual(models.storage.count(), count + 1)
+        state = State(name="Coruscant")
+        state.save()
+        self.assertEqual(models.storage.count(), count + 2)
+        city = City(name="Galactic City", state_id=state.id)
+        city.save()
+        self.assertEqual(models.storage.count(), count + 3)
+        user = User(name="caroldanvers",
+                    email="cap@616.marvel",
+                    password="tesseract")
+        user.save()
+        self.assertEqual(models.storage.count(), count + 4)
+        place = Place(name="The Batcave", city_id=city.id, user_id=user.id)
+        place.save()
+        self.assertEqual(models.storage.count(), count + 5)
+        review = Review(name="5 stars",
+                        user_id=user.id,
+                        place_id=place.id,
+                        text="AWESOME!")
+        review.save()
+        self.assertEqual(models.storage.count(), count + 6)
+
+    def test_get(self):
+        """Test get method for all classes"""
+        amenity = Amenity(name="AC")
+        amenity.save()
+        self.assertEqual(amenity, models.storage.get("Amenity", amenity.id))
+        state = State(name="Coruscant")
+        state.save()
+        city = City(name="Galactic City", state_id=state.id)
+        city.save()
+        self.assertEqual(city, models.storage.get("City", city.id))
+        user = User(name="caroldanvers",
+                    email="cap@616.marvel",
+                    password="tesseract")
+        user.save()
+        place = Place(name="The Batcave", city_id=city.id, user_id=user.id)
+        place.save()
+        self.assertEqual(place, models.storage.get("Place", place.id))
+        review = Review(name="5 stars",
+                        user_id=user.id,
+                        place_id=place.id,
+                        text="AWESOME!")
+
+
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
